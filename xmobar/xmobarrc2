@@ -1,42 +1,42 @@
 
-Config { font = "xft:Ubuntu:pixelsize=24:antialias=true:hinting=true"
-       , additionalFonts = [
-		"xft:mplus Nerd Font:pixelsize=24"
-	]
-       , bgColor = "#282c34"
-       , fgColor = "#ff6c6b"
-       , alpha = 255
-       , position = Top
-       , textOffset = -1
-       , iconOffset = -1
-       , lowerOnStart = True
-       , pickBroadest = False
-       , persistent = False
-       , hideOnStart = False
-       , iconRoot = "/home/andre/.xmonad/xpm/"
-       , allDesktops = True
-       , overrideRedirect = True
-       , commands = [ 
-                      Run Date "<fn=1>\xf133</fn>  %b %d %Y (%H:%M)" "date" 50
-		    , Run Weather "EGPF" ["-t","<station>: <tempC>C",
-                                          "-L","18","-H","25",
-                                          "--normal","green",
-                                          "--high","red",
-                                          "--low","lightblue"] 36000
-                    , Run Network "eth0" ["-L","0","-H","32",
-                                          "--normal","green","--high","red"] 10
-                    , Run Network "eth1" ["-L","0","-H","32",
-                                          "--normal","green","--high","red"] 10
-                    , Run Cpu ["-L","3","-H","50",
-                               "--normal","green","--high","red"] 10
-                    , Run Memory ["-t","Mem: <usedratio>%"] 10
-                    , Run Swap [] 10
-                    , Run Com "uname" ["-s","-r"] "" 36000
-                    , Run UnsafeStdinReader
-                    ]
-       , sepChar = "%"
-       , alignSep = "}{"
-       , template = "<icon=haskell_28.xpm/> | %UnsafeStdinReader% | %cpu% | %memory% * %swap% | %eth0% - %eth1% }\
-                    \{ <fc=#ee9a00>%date%</fc> | %EGPF% | %uname%"
-       }
+Config {
+      position = Static {xpos = 7700, ypos = 5, width = 3800, height = 40}
+    , border = FullB
+    , borderColor = "#ff6c6b"
+    , borderWidth = 1
+    , font = "xft:Ubuntu Mono:pixelsize=24:antialias=true:hinting=true"
+    , additionalFonts = [
+        "xft:mplus Nerd Font Mono:pixelsize=30",
+        "xft:mplus Nerd Font Mono:pixelsize=36"
+
+    ]
+    , bgColor = "#282c34"
+    , fgColor = "#ff6c6b"
+    , alpha = 255
+    , textOffset = -1
+    , iconOffset = -1
+    , lowerOnStart = True
+    , pickBroadest = False
+    , persistent = False
+    , hideOnStart = False
+    , iconRoot = "/home/andre/.xmonad/xpm/"
+    , allDesktops = True
+    , overrideRedirect = True
+    , commands = [ 
+    Run Date "<fn=1>\xf133</fn>  %b %d %Y (%H:%M)" "date" 50
+        , Run Cpu ["-t", "<fn=1>\xf878</fn>  cpu: (<total>%)","-H","50","--high","red"] 20
+        , Run Memory ["-t","<fn=1>\xf233</fn> Mem: <usedratio>%"] 10
+        , Run Swap [] 10
+        , Run Com "uname" ["-s","-r"] "" 36000
+        , Run Com "echo" ["<fn=1>\xf17c</fn>"] "penguin" 36000
+        , Run Com "/home/andre/.xmonad/scripts/wireless.sh" [] "wifiloc" 30
+        , Run UnsafeStdinReader
+        , Run Com "echo" ["<fn=2>\xe61f</fn>"] "hask" 36000
+        , Run Com "echo" ["<fn=1>\x300a</fn>"] "beg" 36000
+        , Run Com "echo" ["<fn=1>\x300b</fn>"] "end" 36000
+    ]
+    , sepChar = "%"
+    , alignSep = "}{"
+    , template = "  %hask%%beg% %UnsafeStdinReader% %end%} <fc=#ee9a00>%date%</fc> {%beg% %penguin% %uname% | %wifiloc% | %cpu% | %memory% * %swap% %end%  "
+}
 
