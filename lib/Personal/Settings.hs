@@ -29,3 +29,13 @@ myBorderWidth = 1
 
 myModMask = mod4Mask
 
+-- Border colors for unfocused and focused windows, respectively.
+--
+
+myNormalBorderColor :: String
+myNormalBorderColor = "#dddddd"
+
+myFocusedBorderColor :: String
+myFocusedBorderColor = "#ff0000"
+
+
