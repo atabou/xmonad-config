@@ -1,13 +1,12 @@
 
 Config {
-      position = Static {xpos = 7700, ypos = 5, width = 3800, height = 40}
-    , border = FullB
-    , borderColor = "#ff6c6b"
-    , borderWidth = 1
-    , font = "xft:Ubuntu Mono:pixelsize=24:antialias=true:hinting=true"
+     -- position = Static {xpos = 3840, ypos = 0, width = 3840, height = 40}
+      position       = TopSize L 100 24
+    , font = "xft:Ubuntu:pixelsize=20:antialias=true:hinting=true"
     , additionalFonts = [
-        "xft:mplus Nerd Font Mono:pixelsize=30",
-        "xft:mplus Nerd Font Mono:pixelsize=36"
+        "xft:mplus Nerd Font Mono:pixelsize=16",
+        "xft:mplus Nerd Font Mono:pixelsize=24",
+        "xft:Ubuntu:pixelsize=12:antialias=true:hinting=true"
 
     ]
     , bgColor = "#282c34"
@@ -23,20 +22,35 @@ Config {
     , allDesktops = True
     , overrideRedirect = True
     , commands = [ 
-    Run Date "<fn=1>\xf133</fn>  %b %d %Y (%H:%M)" "date" 50
-        , Run Cpu ["-t", "<fn=1>\xf878</fn>  cpu: (<total>%)","-H","50","--high","red"] 20
-        , Run Memory ["-t","<fn=1>\xf233</fn> Mem: <usedratio>%"] 10
-        , Run Swap [] 10
-        , Run Com "uname" ["-s","-r"] "" 36000
-        , Run Com "echo" ["<fn=1>\xf17c</fn>"] "penguin" 36000
+          Run Com "echo" ["<fn=2>\xf17c</fn>"] "penguin" 36000
+        , Run Com "uname" ["-r"] "" 36000
+        , Run Cpu ["-t", "<fn=1>\xf878</fn> CPU: (<total>%)", "-H", "50", "--high", "red"] 20
+        , Run Memory ["-t", "<fn=1>\xf233</fn> RAM: <used>M (<usedratio>%)"] 20
+        , Run DiskU [("/", "<fn=1>\xf0c7</fn>  hdd: <free> free")] [] 60
+        -- Echos an "up arrow" icon in front of the uptime output.
+        , Run Com "echo" ["<fn=1>\xf0aa</fn>"] "uparrow" 3600
+        -- Uptime
+        , Run Uptime ["-t", "uptime: <days>d <hours>h"] 360
+        -- Echos a "bell" icon in front of the pacman updates.
+        , Run Com "echo" ["<fn=1>\xf0f3</fn>"] "bell" 3600
+        -- Check for pacman updates (script found in .local/bin)
+        , Run Com "/home/andre/.xmonad/scripts/pacupdate.sh" [] "pacupdate" 36000
         , Run Com "/home/andre/.xmonad/scripts/wireless.sh" [] "wifiloc" 30
-        , Run UnsafeStdinReader
+        -- Time and date
+        , Run Date "<fn=1>\xf017</fn>  %b %d %Y - (%H:%M) " "date" 50
+        -- Script that dynamically adjusts xmobar padding depending on number of trayer icons.
+        , Run Com ".config/xmobar/trayer-padding-icon.sh" [] "trayerpad" 20
+        -- Echos a haskell icon
         , Run Com "echo" ["<fn=2>\xe61f</fn>"] "hask" 36000
-        , Run Com "echo" ["<fn=1>\x300a</fn>"] "beg" 36000
-        , Run Com "echo" ["<fn=1>\x300b</fn>"] "end" 36000
+        , Run Com "echo" ["<fn=2>\x300a</fn>"] "beg" 36000
+        , Run Com "echo" ["<fn=2>\x300b</fn>"] "end" 36000
+        -- Prints out the left side items such as workspaces, layout, etc.
+        , Run UnsafeStdinReader
+
     ]
     , sepChar = "%"
     , alignSep = "}{"
-    , template = "  %hask%%beg% %UnsafeStdinReader% %end%} <fc=#ee9a00>%date%</fc> {%beg% %penguin% %uname% | %wifiloc% | %cpu% | %memory% * %swap% %end%  "
+    , template = "  %hask%%beg% %UnsafeStdinReader% %end% } <box type=Bottom width=4 mb=0 color=#46d9ff><fc=#46d9ff> %date% </fc></box> {<box type=Bottom width=4 mb=0 color=#51afef><fc=#51afef>%penguin% %uname% </fc></box><box type=Bottom width=4 mb=0 color=#da8548><fc=#da8548> %wifiloc% </fc></box><box type=Bottom width=4 mb=0 color=#ecbe7b><fc=#ecbe7b> %cpu% </fc></box><box type=Bottom width=4 mb=0 color=#ff6c6b><fc=#ff6c6b><action=`alacritty -e htop`> %memory% </action></fc></box><box type=Bottom width=4 mb=0 color=#a9a1e1><fc=#a9a1e1><action=`alacritty -e htop`> %disku% </action></fc></box><box type=Bottom width=4 mb=0 color=#98be65><fc=#98be65> %uparrow% %uptime% </fc></box><box type=Bottom width=4 mb=0 color=#c678dd><fc=#c678dd> %bell%  <action=`alacritty -e sudo pacman -Syu`>%pacupdate%  </action></fc></box>"
+
 }
 
