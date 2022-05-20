@@ -70,7 +70,7 @@ myFocusedBorderColor = "#ff0000"
 
 
 
-myLayout =  spacingRaw False (Border 0 10 10 10) True (Border 10 10 10 10) True $ avoidStruts (tiled ||| Mirror tiled ||| Full)
+myLayout =  spacingRaw False (Border 44 10 10 10) True (Border 10 10 10 10) True $ avoidStruts (tiled ||| Mirror tiled ||| Full)
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled   = Tall nmaster delta ratio
