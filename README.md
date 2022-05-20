@@ -7,4 +7,7 @@
 - `picom`
 - `xmobar`
 - `alacritty`
+- `dmenu`
+- `mplus font`
+- `iwconfig`
 
