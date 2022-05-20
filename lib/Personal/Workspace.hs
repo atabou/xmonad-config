@@ -19,5 +19,10 @@ import Data.Maybe (fromJust, isJust)
 myWorkspaces    = [" dev "," www "," sys "," doc "," vbox "," chat "," mus "," vid "," gfx "]
 myWorkspaceIndices = M.fromList $ zipWith (,) myWorkspaces [1..]
 
--- clickable ws = "<action=xdotoo key super+" ++show i++ ">" ++ws++ "</action>"
---    where i = fromJust $ M.lookup ws myWorkspaceIndices
+clickable ws = "<action=xdotoo key super+" ++show i++ ">" ++ws++ "</action>"
+    where i = fromJust $ M.lookup ws myWorkspaceIndices
+
+windowCount :: X (Maybe String)
+windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace . W.current . windowset
+
+

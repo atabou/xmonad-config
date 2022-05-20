@@ -1,7 +1,5 @@
 module Personal.Hooks where
 
-
-
 import XMonad
 import System.IO (hPutStrLn)
 import Data.Monoid
@@ -12,13 +10,11 @@ import XMonad.Hooks.SetWMName
 
 import XMonad.Layout.Spacing
 
-import qualified XMonad.StackSet as W
-
 import XMonad.Util.NamedScratchpad
 import XMonad.Util.SpawnOnce
 import XMonad.Util.Run
 
-
+import Personal.Workspace
 
 ------------------------------------------------------------------------
 -- Layouts:
@@ -30,9 +26,6 @@ import XMonad.Util.Run
 --
 -- The available layouts.  Note that each layout is separated by |||,
     -- which denotes layout choice.
-    --
-
-
 
 myLayout =  spacingRaw False (Border 44 10 10 10) True (Border 10 10 10 10) True $ avoidStruts (tiled ||| Mirror tiled ||| Full)
     where
@@ -99,9 +92,6 @@ myStartupHook = do
 
 
 ------------------------------------------------------------------------
-
-windowCount :: X (Maybe String)
-windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace . W.current . windowset
 
 -- Status bars and logging:
     -- Perform an arbitrary action on each internal state change or X event.
