@@ -27,7 +27,7 @@ import Personal.Workspace
 -- The available layouts.  Note that each layout is separated by |||,
     -- which denotes layout choice.
 
-myLayout =  spacingRaw False (Border 44 10 10 10) True (Border 10 10 10 10) True $ avoidStruts (tiled ||| Mirror tiled ||| Full)
+myLayout =  spacingRaw False (Border 39 5 5 5) True (Border 5 5 5 5) True $ avoidStruts (tiled ||| Mirror tiled ||| Full)
     where
     -- default tiling algorithm partitions the screen into two panes
     tiled   = Tall nmaster delta ratio

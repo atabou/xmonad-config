@@ -20,7 +20,7 @@ myClickJustFocuses = False
 -- Width of the window border in pixels.
 
 myBorderWidth::GHC.Word.Word32
-myBorderWidth = 1
+myBorderWidth = 2
 
 -- modMask lets you specify which modkey you want to use. The default
 -- is mod1Mask ("left alt").  You may also consider using mod3Mask
@@ -33,9 +33,9 @@ myModMask = mod4Mask
 --
 
 myNormalBorderColor :: String
-myNormalBorderColor = "#dddddd"
+myNormalBorderColor = "#51afef"
 
 myFocusedBorderColor :: String
-myFocusedBorderColor = "#ff0000"
+myFocusedBorderColor = "#5fffef"
 
 
